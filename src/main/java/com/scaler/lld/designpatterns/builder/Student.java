@@ -20,6 +20,7 @@ public class Student {
         this.psp = b.getPsp();
     }
 
+    //Builder is a static inner class
     public static class Builder {
         private String name;
         private String address;
@@ -27,8 +28,10 @@ public class Student {
         private int age;
         private String gender;
 
+        //make constructor private so that no one can create object of it  from outside
         private Builder() {}
 
+        //All sette methods return current object ofter setting the attribute
         public Builder setName(String name) {
             this.name = name;
             return this;
@@ -54,6 +57,8 @@ public class Student {
             return this;
         }
 
+        //build method return the object to actual class andmake sure build mathod should be public
+        //if there is any validation we wanna apply we can apply before build the actual object.
         public Student build() throws Exception {
             if (!validate()) {
                 throw new Exception("Wrong Parameters");
@@ -61,6 +66,10 @@ public class Student {
             return new Student(this);
         }
 
+
+
+        //Getters
+        
         public String getName() {
             return name;
         }
